@@ -84,6 +84,7 @@ public class TransactionTest {
     public void testTransactionQuery() throws Exception {
         Connection conn = JdbcUtils.getConnection();
         //TODO 获取当前链接的隔离级别
+        conn.setTransactionIsolation(conn.TRANSACTION_READ_COMMITTED);
         System.out.println(conn.getTransactionIsolation());
         //TODO 取消自动提交数据
         conn.setAutoCommit(false);
@@ -128,8 +129,6 @@ public class TransactionTest {
         } finally {
             JdbcUtils.closeResources(null, ps, rs);
         }
-
         return null;
-
     }
 }
